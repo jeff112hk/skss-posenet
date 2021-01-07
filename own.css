@@ -1,5 +1,13 @@
 /* loading */
 
+.customFontSizeLarge {
+    font-size: 60 !important;
+}
+
+.customFontSizeNormal {
+    font-size: 40 !important;
+}
+
 #logo {
     width: 80%;
 }
