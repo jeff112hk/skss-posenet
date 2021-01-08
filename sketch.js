@@ -18,7 +18,7 @@ let confidenceOffset = 0.1
 let stopCounting = false
 
 let currentFrame = 0
-let delayFrame = 60
+let delayFrame = 40
 
 let page = 0;
 
