@@ -32,32 +32,43 @@
         </header>
     </div>
 
-    <main class="container" style="padding-top: 200px; ">
+    <main class="container" style="padding-top: 30%; padding-bottom: 10%;">
         <h2 class="blog-post-title" id="stepTitle">步驟</h2>
-        <div class="embed-responsive embed-responsive-16by9">
+        <!-- <div class="embed-responsive embed-responsive-16by9">
             <iframe id="demoVideo" style="width: 100%; height: 80%;" width="560" height="315" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
+        </div> -->
+        <video width="100%" id="demoVideo" controls autoplay>
+            <!-- <source src="" type="video/mp4 "> -->
+            <!-- Your browser does not support the video tag. -->
+        </video>
     </main>
 
-    <footer class="blog-footer mt-4">
+    <footer class="blog-footer mt-4 ">
         <p>
-            <!-- <a href="#">Back to top</a> -->
+            <!-- <a href="# ">Back to top</a> -->
         </p>
     </footer>
     <script>
         function initByStep() {
-            // document.getElementById("demo").innerHTML = "Paragraph changed.";
+            // document.getElementById("demo ").innerHTML = "Paragraph changed. ";
             let step = sessionStorage.getItem('step');
             console.log(step)
             if (step == null) {
                 //return home
-                window.location.href = "./home.html";
+                window.location.href = "./home.html ";
                 return
             }
 
-            let demoVideoPlayer = document.getElementById('demoVideo')
+            // let demoVideoPlayer = document.getElementById('demoVideo')
+            // console.log(demoVideoPlayer)
             let stepTitle = document.getElementById('stepTitle')
             stepTitle.innerHTML = stepTitle.innerHTML + " " + String(parseInt(step) + 1)
+
+            var video = document.getElementById('demoVideo');
+            var demoVideoPlayer = document.createElement('source');
+
+            // source.setAttribute('src', 'http://www.tools4movies.com/trailers/1012/Kill%20Bill%20Vol.3.mp4');
+
             switch (String(step)) {
                 case '0':
                     demoVideoPlayer.setAttribute("src", "./assets/fitness_exercise_action1.mp4");
@@ -75,9 +86,21 @@
                     demoVideoPlayer.setAttribute("src", "./assets/fitness_exercise_action5.mp4");
                     break;
                 default:
-                    window.location.href = "./home.html";
+                    window.location.href = "./home.html ";
                     break;
             }
+
+            video.appendChild(demoVideoPlayer);
+            video.play();
+
+            // setTimeout(function() {
+            //     video.pause();
+
+            //     source.setAttribute('src', 'http://www.tools4movies.com/trailers/1012/Despicable%20Me%202.mp4');
+
+            //     video.load();
+            //     video.play();
+            // }, 3000);
         }
         initByStep();
     </script>
