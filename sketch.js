@@ -27,6 +27,9 @@ let imgO;
 let imgStar;
 let radio = 640 / 480
 
+let waitTime = 5;
+let waitTimeFuncVar;
+
 // function preload() {
 //   imgLogo = loadImage('assets/logo.png');
 //   imgO = loadImage('assets/o.png');
@@ -83,6 +86,19 @@ function setup() {
     });
     // Hide the video element, and just show the canvas
     video.hide();
+
+    waitTimeFuncVar = setInterval(waitTimeFunc, 1000)
+}
+
+function waitTimeFunc() {
+    // console.log(waitTime)
+    waitTime = waitTime - 1
+    if (waitTime <= -1) {
+        clearInterval(waitTimeFuncVar)
+        setTimeout(() => {
+            window.location.href = "./evaluation.html";
+        }, 15000)
+    }
 }
 
 function windowResized() {
@@ -95,29 +111,39 @@ function modelReady() {
 }
 
 function draw() {
+    background(51);
     image(video, 0, 0, width, height);
+    // textAlign(CENTER, CENTER);
+    // text('CENTER', 0, 37, width);
 
-    // We can call both functions to draw all keypoints and the skeletons
-    drawKeypoints();
-    drawSkeleton();
-    if (!stopCounting) {
-        countMovement();
+    if (waitTime > -1) {
+        textSize(128);
+        textAlign(CENTER, CENTER);
+        fill(0, 102, 255);
+        text(waitTime, 0, height / 2, width);
     } else {
-        if (frameCount - currentFrame > delayFrame) {
-            stopCounting = false;
-        }
-    }
-    textSize(32);
-    text("Stage: " + String(parseInt(stage) + 1), 25, 30);
-    text("Count: " + stageResult[0] + ", " + stageResult[1], 25, 70);
+        // We can call both functions to draw all keypoints and the skeletons
+        drawKeypoints();
+        drawSkeleton();
+        if (!stopCounting) {
+            countMovement();
+            if (Math.max(stageResult[0], stageResult[1]) >= 8) {
+                window.location.href = "./evaluation.html";
+            }
 
-    // switch (page){
-    //   case 0:
-    //     loadingScreen();
-    //     break;
-    //   default:
-    //     break;
-    // }
+        } else {
+            if (frameCount - currentFrame > delayFrame) {
+                stopCounting = false;
+            }
+        }
+        textSize(48);
+        textAlign(LEFT, TOP);
+        fill(255, 0, 0);
+        text("Stage: " + String(parseInt(stage) + 1), 25, 30);
+        text("Count: " + stageResult[0] + ", " + stageResult[1], 25, 80);
+        text("Mark: " + Math.max(stageResult[0], stageResult[1]) + '/8', 25, 130);
+
+    }
 }
 
 function countMovement() {
