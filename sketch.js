@@ -30,6 +30,9 @@ let radio = 640 / 480
 let waitTime = 5;
 let waitTimeFuncVar;
 
+let nextStageTime = 15;
+let nextStageTimeVar;
+
 // function preload() {
 //   imgLogo = loadImage('assets/logo.png');
 //   imgO = loadImage('assets/o.png');
@@ -95,10 +98,16 @@ function waitTimeFunc() {
     waitTime = waitTime - 1
     if (waitTime <= -1) {
         clearInterval(waitTimeFuncVar)
-        setTimeout(() => {
-            window.location.href = "./evaluation.html";
-        }, 15000)
+        nextStageTimeVar = setInterval(nextStageTimeFunc, 1000)
     }
+}
+
+function nextStageTimeFunc() {
+    if (nextStageTime <= 0) {
+        clearInterval(nextStageTimeVar)
+        window.location.href = "./evaluation.html";
+    }
+    nextStageTime = nextStageTime - 1
 }
 
 function windowResized() {
@@ -115,11 +124,11 @@ function draw() {
     image(video, 0, 0, width, height);
     // textAlign(CENTER, CENTER);
     // text('CENTER', 0, 37, width);
-
+    fill(0, 102, 255);
     if (waitTime > -1) {
         textSize(128);
         textAlign(CENTER, CENTER);
-        fill(0, 102, 255);
+        // fill(0, 102, 255);
         text(waitTime, 0, height / 2, width);
     } else {
         // We can call both functions to draw all keypoints and the skeletons
@@ -138,10 +147,11 @@ function draw() {
         }
         textSize(48);
         textAlign(LEFT, TOP);
-        fill(255, 0, 0);
+        // fill(255, 0, 0);
         text("Stage: " + String(parseInt(stage) + 1), 25, 30);
         text("Count: " + stageResult[0] + ", " + stageResult[1], 25, 80);
         text("Mark: " + Math.max(stageResult[0], stageResult[1]) + '/8', 25, 130);
+        text("Time Left: " + nextStageTime, 25, 180)
 
     }
 }
