@@ -8,6 +8,8 @@ ml5 Example
 PoseNet example using p5.js
 === */
 
+//Jeffrey here
+
 let video;
 let poseNet;
 let poses = [];
@@ -30,7 +32,7 @@ let radio = 640 / 480
 let waitTime = 5;
 let waitTimeFuncVar;
 
-let nextStageTime = 5;
+let nextStageTime = 15;
 let nextStageTimeVar;
 
 // function preload() {
