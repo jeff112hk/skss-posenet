@@ -8,6 +8,8 @@ ml5 Example
 PoseNet example using p5.js
 === */
 
+//changes
+
 let video;
 let poseNet;
 let poses = [];
