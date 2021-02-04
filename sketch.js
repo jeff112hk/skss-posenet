@@ -30,7 +30,7 @@ let radio = 640 / 480
 let waitTime = 5;
 let waitTimeFuncVar;
 
-let nextStageTime = 15;
+let nextStageTime = 5;
 let nextStageTimeVar;
 
 // function preload() {
