@@ -173,7 +173,7 @@ function countMovement() {
         switch (String(stage)) {
             case '0':
             case '1':
-                if (leftKnee.confidence < confidenceOffset || rightKnee.confidence < confidenceOffset) {
+                if (leftwrist.y > nose.y && rightwrist.y > nose.y) {
                     break;
                 }
                 if (rightKnee.y > leftKnee.y + poseOffset) {
