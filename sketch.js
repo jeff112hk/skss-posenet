@@ -181,7 +181,7 @@ function countMovement() {
                 break;
             case '1':
                 if (leftWrist.y > nose.y && rightWrist.y > nose.y) {
-                    stageResult[0] + = 1
+                    stageResult[0] += 1
                 } else if (leftWrist.y < nose.y && rightWrist.y < nose.y){
                     stageResult[1] += 1
                 }
