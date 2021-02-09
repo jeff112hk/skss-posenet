@@ -46,7 +46,7 @@ function setUpStepDetail() {
             stepDetail.innerHTML = "先提起右腿，然後放下；再提起左腿，然後放下，共提腿8次"
             break;
         case '1':
-            stepDetail.innerHTML = "重複第1組動作，先提起右腿，然後放下；再提起左腿，然後放下；每次提腿時，雙手同時推向前面上方，共8次。"
+            stepDetail.innerHTML = "skipped"
             break;
         case '2':
             stepDetail.innerHTML = "先提右腿，再提左腿，雙手同時輪流在左方和右方拍掌，共8次。"
@@ -172,10 +172,6 @@ function countMovement() {
 
         switch (String(stage)) {
             case '0':
-            case '1':
-                if (leftKnee.confidence < confidenceOffset || rightKnee.confidence < confidenceOffset) {
-                    break;
-                }
                 if (rightKnee.y > leftKnee.y + poseOffset) {
                     stageResult[0] += 1
                 } else if (leftKnee.y > rightKnee.y + poseOffset) {
