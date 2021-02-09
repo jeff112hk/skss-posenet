@@ -27,7 +27,7 @@ let imgO;
 let imgStar;
 let radio = 640 / 480
 
-let waitTime = 5;
+let waitTime = 40;
 let waitTimeFuncVar;
 
 let nextStageTime = 5;
@@ -169,16 +169,20 @@ function countMovement() {
         let leftElbow = pose.leftElbow;
         let rightWrist = pose.rightWrist;
         let rightElbow = pose.rightElbow;
+        let nose = pose.nose;
 
         switch (String(stage)) {
             case '0':
-            case '1':
-                if (leftKnee.confidence < confidenceOffset || rightKnee.confidence < confidenceOffset) {
-                    break;
-                }
                 if (rightKnee.y > leftKnee.y + poseOffset) {
                     stageResult[0] += 1
                 } else if (leftKnee.y > rightKnee.y + poseOffset) {
+                    stageResult[1] += 1
+                }
+                break;
+            case '1':
+                if (leftWrist.y > nose.y && rightWrist.y > nose.y) {
+                    stageResult[0] + = 1
+                } else if (leftWrist.y < nose.y && rightWrist.y < nose.y){
                     stageResult[1] += 1
                 }
                 break;
