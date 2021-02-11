@@ -27,7 +27,7 @@ let imgO;
 let imgStar;
 let radio = 640 / 480
 
-let waitTime = 15;
+let waitTime = 5;
 let waitTimeFuncVar;
 
 let nextStageTime = 15;
